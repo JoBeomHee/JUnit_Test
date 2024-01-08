@@ -13,6 +13,7 @@ class StudyTest {
     }
 
     @Test
+    @DisplayName("스터디 만들기 ")
     @Disabled
     void creat1(){
         System.out.println("create1");
