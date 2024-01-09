@@ -3,16 +3,34 @@ package com.example.javatest;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.OS;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudyTest {
     @Test
     @EnabledOnOs(OS.MAC)
+    @Tag("fast")
     void create() {
         Study study = new Study();
         assertNotNull(study);
         System.out.println("create");
+    }
+
+    @DisplayName("테스트 반복하기")
+    @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
+    void repeatedTest(RepetitionInfo info) {
+        Study study  = new Study();
+        assertNotNull(study);
+        System.out.println("RepeatedTest" + info.getCurrentRepetition());
+    }
+
+    @DisplayName("스터디 만들기")
+    @ParameterizedTest(name = "{index} {displayName} message = {0}")
+    @ValueSource(strings = {"날씨가", "많이", "추워지고", "있습니다."})
+    void parameterizedTest(String message) {
+        System.out.println(message);
     }
 
     @Test
