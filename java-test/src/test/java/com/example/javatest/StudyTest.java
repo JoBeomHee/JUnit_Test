@@ -1,11 +1,14 @@
 package com.example.javatest;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudyTest {
     @Test
+    @EnabledOnOs(OS.MAC)
     void create() {
         Study study = new Study();
         assertNotNull(study);
