@@ -10,10 +10,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
+
+    int value = 1;
+
     @Test
     @EnabledOnOs(OS.MAC)
     @Tag("fast")
     void create() {
+        System.out.println(value++);
         Study study = new Study();
         assertNotNull(study);
         System.out.println("create");
@@ -23,6 +27,7 @@ class StudyTest {
     @DisplayName("테스트 반복하기")
     @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     void repeatedTest(RepetitionInfo info) {
+        System.out.println(value++);
         Study study  = new Study();
         assertNotNull(study);
         System.out.println("RepeatedTest" + info.getCurrentRepetition());
