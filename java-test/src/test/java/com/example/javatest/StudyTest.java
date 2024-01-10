@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class StudyTest {
     @Test
     @EnabledOnOs(OS.MAC)
@@ -18,6 +19,7 @@ class StudyTest {
         System.out.println("create");
     }
 
+    @Order(2)
     @DisplayName("테스트 반복하기")
     @RepeatedTest(value = 10, name = "{displayName}, {currentRepetition}/{totalRepetitions}")
     void repeatedTest(RepetitionInfo info) {
@@ -26,6 +28,7 @@ class StudyTest {
         System.out.println("RepeatedTest" + info.getCurrentRepetition());
     }
 
+    @Order(1)
     @DisplayName("스터디 만들기")
     @ParameterizedTest(name = "{index} {displayName} message = {0}")
     @ValueSource(strings = {"날씨가", "많이", "추워지고", "있습니다."})
